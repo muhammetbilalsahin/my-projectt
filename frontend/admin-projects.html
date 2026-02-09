@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin - Projects</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- 🔒 ADMIN KONTROL -->
+    <script>
+      if (!localStorage.getItem("admin_token")) {
+        location.href = "admin-login.html";
+      }
+    </script>
+
+    <div class="page-wrapper">
+      <section
+        class="page-title"
+        style="background-image: url(images/background/bg-page-title.jpg)"
+      >
+        <div class="auto-container">
+          <h1>Admin Projects</h1>
+          <div class="text">Proje yönetimi</div>
+        </div>
+      </section>
+
+      <section class="projects-section full-width no-padd-top">
+        <div class="outer-container clearfix" id="projects-container">
+          <!-- JS dolduracak -->
+        </div>
+        <div class="auto-container" style="margin: 40px 0">
+          <h3>➕ Yeni Proje Ekle</h3>
+
+          <form id="addProjectForm">
+            <input
+              type="text"
+              name="title"
+              placeholder="Proje başlığı"
+              required
+              class="form-control"
+            /><br />
+            <input
+              type="text"
+              name="category"
+              placeholder="Kategori"
+              class="form-control"
+            /><br />
+            <textarea
+              name="description"
+              placeholder="Açıklama"
+              class="form-control"
+            ></textarea
+            ><br />
+            <input type="file" name="image" required /><br /><br />
+
+            <button class="theme-btn">Kaydet</button>
+          </form>
+
+          <hr />
+        </div>
+      </section>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/admin-projects.js"></script>
+  </body>
+</html>
