@@ -10,10 +10,7 @@
 
   <body>
     <div class="page-wrapper">
-      <section
-        class="page-title"
-        style="background-image: url(images/background/bg-page-title.jpg)"
-      >
+      <section class="page-title">
         <div class="auto-container">
           <h1>Admin Login</h1>
           <div class="text">Panel giriş</div>
@@ -29,16 +26,16 @@
                   <div class="form-group">
                     <input
                       class="form-control"
+                      id="email"
                       name="email"
                       type="email"
                       placeholder="Email"
                       required
                     />
-                  </div>
 
-                  <div class="form-group">
                     <input
                       class="form-control"
+                      id="password"
                       name="password"
                       type="password"
                       placeholder="Password"
@@ -47,8 +44,9 @@
                   </div>
 
                   <button type="submit" class="theme-btn btn-style-two">
-                    Login
+                    GİRİŞ YAP
                   </button>
+
                   <p id="loginMsg" style="margin-top: 10px"></p>
                 </form>
               </div>
@@ -58,6 +56,6 @@
       </section>
     </div>
 
-    <script src="js/admin-login.js"></script>
+    <script type="module" src="js/admin-login.js"></script>
   </body>
 </html>

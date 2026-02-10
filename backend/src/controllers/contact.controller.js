@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../config/db");
 const { sendContactMail } = require("../services/mailer");
 
 async function submit(req, res) {

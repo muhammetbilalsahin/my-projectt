@@ -1,8 +1,13 @@
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
+alert("ADMIN LOGIN JS ÇALIŞIYOR");
+
+const form = document.getElementById("loginForm");
+const msg = document.getElementById("loginMsg");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = e.target.email.value;
-  const password = e.target.password.value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   const res = await fetch("/api/auth/login", {
     method: "POST",
@@ -12,11 +17,14 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   const data = await res.json();
 
-  if (!data.ok) {
-    alert("Giriş başarısız");
+  if (!res.ok) {
+    msg.innerText = data.msg || "Giriş başarısız";
+    msg.style.color = "red";
     return;
   }
 
   localStorage.setItem("admin_token", data.token);
-  location.href = "admin-projects.html";
+
+  // 🔥 BURASI ARTIK KESİN ÇALIŞIR
+  window.location.replace("/admin-projects.html");
 });

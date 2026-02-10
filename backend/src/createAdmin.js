@@ -1,14 +1,22 @@
-require("dotenv").config();
-const bcrypt = require("bcrypt");
-const db = require("./db");
+import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+import Admin from "./models/admin.js";
 
-(async () => {
-  const email = "admin@site.com";
-  const password = "123456";
-  const hash = await bcrypt.hash(password, 10);
+await mongoose.connect("mongodb://127.0.0.1:27017/akyapi");
 
-  db.prepare(
-    "INSERT OR IGNORE INTO admins (email, password_hash) VALUES (?, ?)",
-  ).run(email, hash);
-  console.log("Admin hazır:", email, password);
-})();
+console.log("DB:", mongoose.connection.name); // 🔍 KANIT
+
+await Admin.deleteMany({});
+
+const email = "admin@site.com";
+const password = "123456";
+
+const hash = await bcrypt.hash(password, 10);
+
+await Admin.create({
+  email,
+  password: hash,
+});
+
+console.log("✅ ADMIN OLUŞTURULDU:", email);
+process.exit(0);

@@ -2,71 +2,87 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Admin - Projects</title>
-
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/responsive.css" rel="stylesheet" />
+    <title>Admin • Projects</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
   </head>
-
   <body>
-    <!-- 🔒 ADMIN KONTROL -->
-    <script>
-      if (!localStorage.getItem("admin_token")) {
-        location.href = "admin-login.html";
-      }
-    </script>
+    <div class="admin-wrap">
+      <aside class="sidebar">
+        <div class="brand">AK YAPI</div>
+        <nav>
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-projects.html" class="active">Projects</a>
+          <a href="admin-login.html" id="logoutBtn">Logout</a>
+        </nav>
+      </aside>
 
-    <div class="page-wrapper">
-      <section
-        class="page-title"
-        style="background-image: url(images/background/bg-page-title.jpg)"
-      >
-        <div class="auto-container">
-          <h1>Admin Projects</h1>
-          <div class="text">Proje yönetimi</div>
-        </div>
-      </section>
+      <main class="content">
+        <header class="topbar">
+          <div class="d-flex justify-content-between">
+            <span>Projeler</span>
+            <button
+              class="btn btn-primary btn-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#projectModal"
+            >
+              + Proje Ekle
+            </button>
+          </div>
+        </header>
 
-      <section class="projects-section full-width no-padd-top">
-        <div class="outer-container clearfix" id="projects-container">
-          <!-- JS dolduracak -->
-        </div>
-        <div class="auto-container" style="margin: 40px 0">
-          <h3>➕ Yeni Proje Ekle</h3>
-
-          <form id="addProjectForm">
-            <input
-              type="text"
-              name="title"
-              placeholder="Proje başlığı"
-              required
-              class="form-control"
-            /><br />
-            <input
-              type="text"
-              name="category"
-              placeholder="Kategori"
-              class="form-control"
-            /><br />
-            <textarea
-              name="description"
-              placeholder="Açıklama"
-              class="form-control"
-            ></textarea
-            ><br />
-            <input type="file" name="image" required /><br /><br />
-
-            <button class="theme-btn">Kaydet</button>
-          </form>
-
-          <hr />
-        </div>
-      </section>
+        <section class="page">
+          <div class="card">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Başlık</th>
+                  <th>Kategori</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
     </div>
 
+    <!-- MODAL -->
+    <div class="modal fade" id="projectModal">
+      <div class="modal-dialog">
+        <form class="modal-content" id="projectForm">
+          <div class="modal-header"><h5>Proje Ekle</h5></div>
+          <div class="modal-body">
+            <input
+              name="title"
+              class="form-control mb-2"
+              placeholder="Başlık"
+              required
+            />
+            <input
+              name="category"
+              class="form-control mb-2"
+              placeholder="Kategori"
+            />
+            <textarea
+              name="description"
+              class="form-control mb-2"
+              placeholder="Açıklama"
+            ></textarea>
+            <input type="file" name="image" class="form-control" />
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Kapat
+            </button>
+            <button class="btn btn-primary">Kaydet</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/admin-projects.js"></script>
+    <script type="module" src="js/admin-projects.js"></script>
   </body>
 </html>

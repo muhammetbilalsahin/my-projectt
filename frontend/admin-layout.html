@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="admin-wrap">
+      <aside class="sidebar">
+        <div class="brand">AK YAPI</div>
+        <nav>
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-projects.html" class="active">Projects</a>
+          <a href="admin-login.html" id="logoutBtn">Logout</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <span>Admin Panel</span>
+        </header>
+
+        <!-- SAYFA İÇERİĞİ -->
+        <section class="page">
+          <!-- admin-projects.html içeriği buraya gelecek -->
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module">
+      import { requireAuth, logout } from "./js/auth.js";
+      requireAuth();
+      document.getElementById("logoutBtn").onclick = logout;
+    </script>
+  </body>
+</html>

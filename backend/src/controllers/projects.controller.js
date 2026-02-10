@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../config/db");
 
 function list(req, res) {
   const rows = db.prepare("SELECT * FROM projects ORDER BY id DESC").all();

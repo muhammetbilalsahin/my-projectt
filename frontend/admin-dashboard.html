@@ -31,10 +31,6 @@
             <div class="top-right">
               <ul class="clearfix">
               
-                  <a class="search-box-btn" href="#"
-                    ><span class="fa fa-search"></span
-                  ></a>
-                </li>
               </ul>
             </div>
           </div>
@@ -44,7 +40,6 @@
         <!--Header-Upper-->
         <div
           class="header-upper"
-          style="background-image: url(images/background/bg-header-pattern.jpg)"
         >
           <div class="auto-container">
             <div class="clearfix">
@@ -91,7 +86,7 @@
                   <ul>
                     <li><span class="small-title">bize e-posta gönderin.</span></li>
                     <li>
-                      <a href="#"><strong>info@akyapibakim.com</strong></a>
+                      <a href="mailto:info@akyapibakim.com"><strong>info@akyapibakim.com</strong></a>
                     </li>
                   </ul>
                 </div>
@@ -123,7 +118,9 @@
                 <div class="navbar-collapse collapse clearfix">
                   <ul class="navigation clearfix">
                     <li class="current dropdown"><a href="index.html">Ana Sayfa</a></li>
+                      <li><a href="projects.html">Projeler</a></li>
                     <li><a href="about.html">Hakkımızda</a></li>
+                   
                     <li><a href="services.html">Hizmetlerimiz</a></li>
                     <li class="dropdown">
                     </li>
@@ -147,7 +144,6 @@
     <div class="page-wrapper">
       <section
         class="page-title"
-        style="background-image: url(images/background/bg-page-title.jpg)"
       >
         <div class="auto-container">
           <h1>Admin Panel</h1>
@@ -185,56 +181,7 @@
               </div>
             </div>
 
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="default-service-column">
-                <div class="inner-box">
-                  <div class="inner-most">
-                    <div class="lower-part">
-                      <div class="left-curve"></div>
-                      <div class="right-curve"></div>
-                      <div class="content">
-                        <h3>Blog</h3>
-                        <div class="text">Yazı ekle / düzenle</div>
-                        <div class="more-link">
-                          <a href="admin-blog.html" class="read-more">Aç</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p style="margin-top: 8px; opacity: 0.8">
-                (blog’u henüz bağlamadıysak sonra ekleriz)
-              </p>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="default-service-column">
-                <div class="inner-box">
-                  <div class="inner-most">
-                    <div class="lower-part">
-                      <div class="left-curve"></div>
-                      <div class="right-curve"></div>
-                      <div class="content">
-                        <h3>Site Ayarları</h3>
-                        <div class="text">Telefon, e-posta, adres, logo</div>
-                        <div class="more-link">
-                          <a href="admin-site-settings.html" class="read-more"
-                            >Aç</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p style="margin-top: 8px; opacity: 0.8">
-                (istersen bunu da yaparız)
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
     </div>
     <!--Main Footer-->
       <footer class="main-footer">
@@ -275,6 +222,7 @@
                       <ul>
                         <li><a href="index.html">Ana Sayfa</a></li>
                         <li><a href="about.html">Hakkımızda</a></li>
+                          <li ><a href="projects.html">Projelerimiz</a></li>
                         <li><a href="services.html">Hizmetlerimiz</a></li>
                         <li><a href="contact.html">İletişim</a></li>
                       </ul>
@@ -351,6 +299,18 @@
           </form>
 
          
+<!-- 1️⃣ jQuery HER ZAMAN EN ÖNCE -->
+<script src="js/jquery.js"></script>
+
+<!-- 2️⃣ Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 3️⃣ Diğer pluginler -->
+<script src="js/owl.js"></script>
+<script src="js/wow.js"></script>
+
+<!-- 4️⃣ Senin JS dosyan -->
+<script src="js/admin-projects.js"></script>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -360,6 +320,11 @@
     <script src="js/wow.js"></script>
     <script src="js/script.js"></script>
     <script src="js/admin-bar.js"></script>
+    <script type="module">
+  import { requireAuth } from "./js/auth.js";
+  requireAuth();
+</script>
+
 
     <script src="js/admin-dashboard.js"></script>
   </body>

@@ -1359,7 +1359,7 @@ li {
   display: block;
   width: 100%;
   height: 13px;
-  background: url(../images/background/slider-border.png) center center repeat-x;
+  background: url(../images/background/bg-scale.png) center center repeat-x;
 }
 
 .main-slider .tp-bannertimer {
@@ -3389,7 +3389,7 @@ li {
   display: block;
   width: 100%;
   height: 13px;
-  background: url(../images/background/slider-border.png) center center repeat-x;
+  background: url(../images/background/bg-scale.png) center center repeat-x;
 }
 
 .page-title .auto-container {
@@ -4584,4 +4584,23 @@ li {
   color: #acacac;
   font-weight: 700;
   text-transform: uppercase;
+}
+.theme-btn-pdf {
+  position: relative;
+  padding: 5px 4px;
+  line-height: 24px;
+  text-transform: uppercase;
+  background: none;
+
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid #515057;
+  font-family: "Poppins", sans-serif;
+}
+.main-slider li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
 }
