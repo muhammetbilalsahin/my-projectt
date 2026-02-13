@@ -1,36 +1,21 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import Admin from "../models/admin.js";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 const router = express.Router();
+const SECRET = "secret123";
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  console.log("LOGIN BODY:", req.body);
+  const user = await User.findOne({ email });
+  if (!user) return res.status(401).json({ error: "User not found" });
 
-  const admin = await Admin.findOne({ email });
-  console.log("ADMIN FROM DB:", admin);
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) return res.status(401).json({ error: "Wrong password" });
 
-  if (!admin) {
-    console.log("❌ ADMIN YOK");
-    return res.status(401).json({ msg: "Hatalı giriş" });
-  }
-
-  const ok = await bcrypt.compare(password, admin.password);
-  console.log("PASSWORD MATCH:", ok);
-
-  if (!ok) {
-    console.log("❌ ŞİFRE UYUŞMUYOR");
-    return res.status(401).json({ msg: "Hatalı giriş" });
-  }
-
-  console.log("✅ LOGIN OK");
-
-  const token = jwt.sign({ id: admin._id }, "SECRET123", {
-    expiresIn: "1d",
-  });
+  const token = jwt.sign({ id: user._id }, SECRET);
 
   res.json({ token });
 });
