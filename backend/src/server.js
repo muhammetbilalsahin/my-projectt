@@ -3,13 +3,17 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 
 import User from "./models/User.js";
 import authRoutes from "./routes/auth.routes.js";
 import projectRoutes from "./routes/projects.routes.js";
+import sliderRoutes from "./routes/slider.routes.js";
+
+dotenv.config();
 
 // ======================
-// PATH FIX (ÖNEMLİ)
+// PATH FIX
 // ======================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,13 +26,9 @@ const app = express();
 app.use(express.json());
 
 // ======================
-// FRONTEND (public)
+// STATIC FILES
 // ======================
 app.use(express.static(path.join(__dirname, "../public")));
-
-// ======================
-// UPLOADS
-// ======================
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // ======================
@@ -36,6 +36,7 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // ======================
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/sliders", sliderRoutes);
 
 // ======================
 // ADMIN AUTO CREATE
@@ -52,23 +53,32 @@ async function createAdmin() {
     });
 
     console.log("✅ Admin created");
-  } else {
-    console.log("✅ Admin already exists");
   }
 }
 
 // ======================
-// DB + SERVER START
+// START SERVER
 // ======================
+
+const PORT = process.env.PORT || 4000;
+const MONGO_URL = process.env.MONGO_URL;
+
+if (!MONGO_URL) {
+  console.error("❌ MONGO_URL not found in environment variables");
+  process.exit(1);
+}
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/company")
+  .connect(MONGO_URL)
   .then(async () => {
-    console.log("MongoDB connected");
+    console.log("✅ MongoDB connected");
 
     await createAdmin();
 
-    app.listen(4000, () => {
-      console.log("Server running on http://localhost:4000");
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
-  .catch(console.log);
+  .catch((err) => {
+    console.error("❌ DB Connection Error:", err);
+  });

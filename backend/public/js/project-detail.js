@@ -11,22 +11,38 @@ fetch("/api/projects/" + id)
     document.getElementById("description").innerText = p.description || "";
 
     const gallery = document.getElementById("gallery");
-
-    // eski içerik temizlenir
     gallery.innerHTML = "";
 
-    // resimler varsa göster
-    if (p.images && p.images.length > 0) {
-      p.images.forEach((img) => {
-        gallery.innerHTML += `
-          <div class="col-md-4 mb-3">
-            <img src="${img}"
-                 style="width:100%; border-radius:6px;">
-          </div>
-        `;
-      });
-    } else {
-      gallery.innerHTML = `<img src="images/default.jpg" style="width:100%">`;
+    // RESİM YOKSA
+    if (!p.images || p.images.length === 0) {
+      gallery.innerHTML = `
+        <img src="images/default.jpg" class="main-project-image">
+      `;
+      return;
     }
+
+    // ===== ANA RESİM =====
+    const mainImage = document.createElement("img");
+    mainImage.src = p.images[0];
+    mainImage.className = "main-project-image";
+
+    gallery.appendChild(mainImage);
+
+    // ===== THUMBNAILS =====
+    const thumbs = document.createElement("div");
+    thumbs.className = "thumb-list";
+
+    p.images.forEach((img) => {
+      const thumb = document.createElement("img");
+      thumb.src = img;
+
+      thumb.addEventListener("click", () => {
+        mainImage.src = img;
+      });
+
+      thumbs.appendChild(thumb);
+    });
+
+    gallery.appendChild(thumbs);
   })
   .catch((err) => console.log(err));

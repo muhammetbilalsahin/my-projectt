@@ -11,14 +11,30 @@ document.addEventListener("DOMContentLoaded", () => {
   bar.style.display = "flex";
   bar.style.gap = "10px";
 
-  bar.innerHTML = `
-    <a href="admin-projects.html" class="theme-btn btn-style-two" style="padding:10px 14px;">
-      Projeler
+  if (token) {
+    const bar = document.createElement("div");
+
+    bar.style.position = "fixed";
+    bar.style.bottom = "20px";
+    bar.style.right = "20px";
+    bar.style.zIndex = "9999";
+
+    bar.innerHTML = `
+    <a href="/admin-projects.html"
+       style="
+         background:#0d6efd;
+         color:white;
+         padding:10px 15px;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;
+       ">
+       Admin Paneli
     </a>
-    <button id="adminLogout" class="theme-btn btn-style-three" style="padding:10px 14px;">
-      Çıkış
-    </button>
   `;
+
+    document.body.appendChild(bar);
+  }
 
   document.body.appendChild(bar);
 

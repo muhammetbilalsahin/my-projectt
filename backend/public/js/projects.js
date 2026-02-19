@@ -15,7 +15,7 @@ fetch("/api/projects")
         <div class="inner-box" onclick="goDetail('${p._id}')">
 
           <figure class="image-box">
-            <img src="${p.image_url || "images/default.jpg"}" alt="">
+            <img src="${p.images[0] || "images/default.jpg"}" alt="">
           </figure>
 
           <div class="caption-layer">
