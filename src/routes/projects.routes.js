@@ -1,5 +1,5 @@
 import express from "express";
-import Project from "../models/project.js";
+import Project from "../models/Project.js";
 import auth from "../middleware/auth.middleware.js";
 import upload from "../middleware/upload.middleware.js";
 
