@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin • Slider</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h2>Ana Sayfa Slider</h2>
+
+      <button
+        class="btn btn-primary mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#sliderModal"
+      >
+        + Slider Ekle
+      </button>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Resim</th>
+            <th>Başlık</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="sliderTable"></tbody>
+      </table>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="sliderModal">
+      <div class="modal-dialog">
+        <form class="modal-content" id="sliderForm">
+          <div class="modal-header">
+            <h5>Slider Ekle</h5>
+          </div>
+
+          <div class="modal-body">
+            <input
+              name="title"
+              class="form-control mb-2"
+              placeholder="Başlık"
+              required
+            />
+
+            <input
+              name="subtitle"
+              class="form-control mb-2"
+              placeholder="Alt başlık"
+            />
+
+            <input type="file" name="image" class="form-control" required />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Kapat
+            </button>
+
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="module" src="js/admin-slider.js"></script>
+  </body>
+</html>
