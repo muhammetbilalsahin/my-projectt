@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import User from "./models/User.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -22,6 +23,13 @@ const __dirname = path.dirname(__filename);
 // APP
 // ======================
 const app = express();
+
+// CORS
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 
 app.use(express.json());
 
@@ -42,17 +50,21 @@ app.use("/api/sliders", sliderRoutes);
 // ADMIN AUTO CREATE
 // ======================
 async function createAdmin() {
-  const exist = await User.findOne({ email: "admin@mail.com" });
+  try {
+    const exist = await User.findOne({ email: "admin@mail.com" });
 
-  if (!exist) {
-    const hash = await bcrypt.hash("123456", 10);
+    if (!exist) {
+      const hash = await bcrypt.hash("123456", 10);
 
-    await User.create({
-      email: "admin@mail.com",
-      password: hash,
-    });
+      await User.create({
+        email: "admin@mail.com",
+        password: hash,
+      });
 
-    console.log("✅ Admin created");
+      console.log("✅ Admin created");
+    }
+  } catch (err) {
+    console.error("Admin create error:", err);
   }
 }
 

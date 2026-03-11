@@ -4,8 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 const router = express.Router();
-const SECRET = "secret123";
-
+const SECRET = process.env.JWT_SECRET;
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
